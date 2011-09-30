@@ -1,4 +1,6 @@
-Restful Object Query Language
+ROQL
+====
+Restful Object Query Language is an extensible domain framework. Out of the box, it extends the command line nature of the web to an OO oriented query language, and packages result objects in JSON.
 
 KEYWORDS
 --------
@@ -51,20 +53,20 @@ With this vocabulary in mind, let us try to map certain operations.
         , email: 'sumeet@ysi.com'
       }
   - details of named 'mypics' content owned by 'sumeet' of 'ysi' named account
-    - /content-svc:details?user.login=sumeet&user.account=ysi
+    - /content-svc:details?user.login=sumeet&user.account=ysi&content.name=mypics
     - {
           type: 'folder'
         , details: { name: 'mypics', size: '200 GB', sub_folders: '20', files: '0' }
       }
   - list of *all* files, links & folders of named account 'ysi'
-    - /content-svc?person.account=ysi
+    - /content-svc:list?person.account=ysi
     - {
           contents: 
                  [
-                  { type: 'folder', name: 'partnerships'},
-                  { type: 'file', name: 'employeelist' }
+                  { subtype: 'folder', name: 'partnerships'},
+                  { subtype: 'file', name: 'employeelist' }
                  ] 
-        , next: IDNEXT
+        , next: 'IDNEXT'
       }
   - send a folder from a user to another user, using email
     - /send:new?from.user.email=s@s.com&to.user.email=y@y.com&content.folder.name=mypics&expiry.time.weeks=2
@@ -73,7 +75,14 @@ With this vocabulary in mind, let us try to map certain operations.
       }
   - last ten items that were sent by me
     - /send:list?from.time.last=10
-  - /upload?expiry.time.weeks=2&content.type=folder&content.folder.name=mypics
+    - {
+        transactions: 
+          [
+              { date: '12/2/03', content: [ { subtype: 'file', name: 'agreement' }], recipient: [ {email: s@s.com} ] }
+            , { date: '11/2/03', content: [ { subtype: 'folder', name: 'hawaii' }], recipient: [ {email: y@y.com} ] }
+          ]
+      }
+  - /upload?content.type=folder&content.folder.name=mypics
   - /download
   - /sign:new?content
   - /sync?device&folder
