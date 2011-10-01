@@ -19,10 +19,10 @@ Environment
 A t environment is composed of:
  - stateless node.js server
  - platform services
-  - document read/ writes services (mongo)
-  - caching services (memcached)
-  - file storage services (memcached)
-  - other http business services (custom)
+   - document read/ writes services (mongo)
+   - caching services (memcached)
+   - file storage services (memcached)
+   - other http business services (custom)
 
 Example environment descriptor:
     
