@@ -7,6 +7,7 @@ T APPLICATIONS
 Each t application has an application descriptor. This descriptor wires up the application for deploying it in a t cloud.
 
 Example application descriptor:
+
 `var app1 = function() { 
   
 }`
