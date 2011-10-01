@@ -30,6 +30,8 @@ SYNTAX
     - the session allows the user to 
   - the client app is issued a refresh token (allows app to generate a new session id on users behalf)
 
+USE CASES
+---------
 With this vocabulary in mind, let us try to map certain operations.
 
   - universe of all registered people
