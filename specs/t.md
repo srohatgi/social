@@ -17,6 +17,7 @@ Example application descriptor:
 Environment
 -----------
 A t environment is composed of:
+
  - stateless node.js server
  - platform services
    - document read/ writes services (mongo)
