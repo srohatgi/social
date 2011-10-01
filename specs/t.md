@@ -8,6 +8,4 @@ Each t application has an application descriptor. This descriptor wires up the a
 
 Example application descriptor:
 
-`var app1 = function() { 
-  
-}`
+`var app1 = function() { }`
