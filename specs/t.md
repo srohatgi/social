@@ -12,14 +12,12 @@ A t app does the following:
  - knows to interact with its human users on devices
    - provides a set features to interact with browsers
      - URL locates a t app from the internet
-     - GUI Elements to conduct information
-       - HTML form elements
-     - Mouse & Keyboard as affiliate devices to provide manipulation of information elements
+     - GUI (HTML form) Elements to conduct information
+     - Mouse & Keyboard as input devices
    - provides a set of features to interact with devices  
      - Icon for activating an app
-     - GUI Elements to conduct information
-       - HTML form elements
-     - Touch, GPS, Camera, Physics (Accelarometer)
+     - GUI (HTML form) Elements to conduct information
+     - Touch, GPS, Camera, Physics (Accelarometer), Compass as input devices
  - knows to interact programmitically
    - URL to locate the application
    - API methods to get and set information
