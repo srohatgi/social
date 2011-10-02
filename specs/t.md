@@ -6,6 +6,7 @@ t (tau) is The overall framework for building lightwieght web apps. In the curre
 Applications
 ------------
 A t app does the following:
+
  - queries the environment
    - gathers interaction mode for its use
  - knows to interact with its human users on devices
