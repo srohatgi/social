@@ -40,7 +40,8 @@ With this vocabulary in mind, let us try to map certain operations.
 
 - universe of all registered people
 
-    GET:/users
+    `GET:/users`
+
     {
         persons: 
           [
