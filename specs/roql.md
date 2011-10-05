@@ -51,51 +51,57 @@ With this vocabulary in mind, let us try to map certain operations.
     }`
   - NOTE: this list is scoped (narrowed) with users session id
 - a person with login 'sumeet' within 'ysi' account
-    - GET:/users/user.login/sumeet
-    - GET:/users/user.id/XXXX
-    - {
-          login: 'sumeet'
-        , id: XXXX
-        , type: 'person'
-        , account: 'ysi'
-        , devices: [ { name: 'windows', sso: 'true' }, { name: 'iphone', sso: 'false' } ]
-        , email: 'sumeet@ysi.com'
-      }
-  - details of named 'mypics' content owned by 'sumeet' of 'ysi' named account
-    - GET:/content-svc?user.login=sumeet&user.account=ysi&content.name=mypics
-    - GET:/content-svc/content.id/XXXX
-    - {
-          type: 'folder'
-        , id: XXXX
-        , details: { name: 'mypics', size: '200 GB', sub_folders: '20', files: '0' }
-      }
-  - list of *all* files, links & folders of named account 'ysi'
-    - GET:/content-svc?person.account=ysi
-    - {
+  - `GET:/users/user.login/sumeet`
+  - `GET:/users/user.id/XXXX`
+  - `{
+         login: 'sumeet'
+       , id: XXXX
+       , type: 'person'
+       , account: 'ysi'
+       , devices: [ { name: 'windows', sso: 'true' }, { name: 'iphone', sso: 'false' } ]
+       , email: 'sumeet@ysi.com'
+     }`
+- details of named 'mypics' content owned by 'sumeet' of 'ysi' named account
+  - `GET:/content-svc?user.login=sumeet&user.account=ysi&content.name=mypics`
+  - `GET:/content-svc/content.id/XXXX`
+  - `{
+         type: 'folder'
+       , id: XXXX
+       , details: { name: 'mypics', size: '200 GB', sub_folders: '20', files: '0' }
+     }`
+- list of *all* files, links & folders of named account 'ysi'
+  - `GET:/content-svc?person.account=ysi`
+  - `{
           contents: 
-                 [
-                  { type: 'folder', name: 'partnerships'},
-                  { type: 'file', name: 'employeelist' }
-                 ] 
+          [
+             { type: 'folder', name: 'partnerships'},
+             { type: 'file', name: 'employeelist' }
+          ] 
         , next: 'IDNEXT'
-      }
-  - send a folder from a user to another user, using email
-    - POST:/send
-    - from.user.email=s@s.com&to.user.email=y@y.com&content.folder.name=mypics&expiry.time.weeks=2
-    - {
+     }`
+- send a folder from a user to another user, using email
+  - `POST:/send`
+  - `from.user.email=s@s.com&to.user.email=y@y.com&content.folder.name=mypics&expiry.time.weeks=2`
+  - `{
         id: 'XXX'
-      }
-  - last ten items that were sent by me
-    - GET:/send:list?from.time.last=10
-    - {
+     }`
+- last ten items that were sent by me
+  - `GET:/send:list?from.time.last=10`
+  - `{
         transactions: 
           [
               { date: '12/2/03', content: [ { subtype: 'file', name: 'agreement' }], recipient: [ {email: s@s.com} ] }
             , { date: '11/2/03', content: [ { subtype: 'folder', name: 'hawaii' }], recipient: [ {email: y@y.com} ] }
           ]
-      }
-  - /upload?content.type=folder&content.folder.name=mypics
-  - /download
-  - /sign:new?content
-  - /sync?device&folder
-  - /user:update?person
+      }`
+- upload a folder
+  - `POST:/upload`
+  - `content.type=folder&content.folder.name=mypics`
+- download a file
+  - `GET:/download/file.id/XXXX`
+- sign a document
+  - `GET:/sign?content`
+- synchronize a device directory
+  - `POST:/sync?device&folder`
+- update some details about a person
+  - `PUT:/users/person.id/XXXX?person.phone=4085188433`
