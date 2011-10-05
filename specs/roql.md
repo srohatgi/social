@@ -38,7 +38,7 @@ USE CASES
 ---------
 With this vocabulary in mind, let us try to map certain operations.
 
-  - universe of all registered people
+- universe of all registered people
 
     GET:/users
     {
@@ -51,8 +51,8 @@ With this vocabulary in mind, let us try to map certain operations.
       , next: IDNEXT
     }
 
-    - NOTE: this list is scoped (narrowed) with users session id
-  - a person with login 'sumeet' within 'ysi' account
+  - NOTE: this list is scoped (narrowed) with users session id
+- a person with login 'sumeet' within 'ysi' account
     - GET:/users/user.login/sumeet
     - GET:/users/user.id/XXXX
     - {
