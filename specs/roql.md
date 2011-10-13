@@ -1,6 +1,6 @@
 ROQL
 ====
-Restful Object Query Language is an extensible domain framework. Out of the box, it extends the command line nature of the web to an OO oriented query language, and packages result objects in JSON.
+Restful Object Query Language is a library. Out of the box, it extends the pointer like command line nature of the web addresses to being an OO oriented query language. The library tries to do this extension in a way that appeals and appears as 'normal' to web programmers.
 
 KEYWORDS
 --------
