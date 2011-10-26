@@ -1,6 +1,6 @@
 t
 =
-*t* (*tau*) is the overall framework for building lightwieght social web apps. The distinction between tau social framework and other web application frameworks is to allow building of malleable application business objects, which expose data and behavior which can be changed by users.
+**t** (**tau**) is the overall framework for building lightwieght social web apps. The distinction between tau social framework and other web application frameworks is to allow building of malleable application business objects, which expose data and behavior which can be changed by users.
 
 Business Object
 ---------------
@@ -19,17 +19,17 @@ So what is a business object? In its purest form, a business object is just a ba
         }
     }
     
-These objects can be created, destroyed, updated, and *related* to other business objects. There are two kinds of relations:
+These objects can be created, destroyed, updated, and **related** to other business objects. There are two kinds of relations:
 
  - for example, a *Payment object* contains information about the user and the payment he made for a subscription or a service
  - for example, a *Payment object* is a type of an *Activity object* (a higher level abstraction)
 
-*tau framework* aims to allow simple objects like *User* be used as building blocks for composing objects like *Payment*, *Activity* etc. 
+**tau framework** aims to allow simple objects like **User** be used as building blocks for composing objects like **Payment**, **Activity** etc. 
 
-Another unique aspect of *tau* framework is the generation of 
+Another unique aspect of **tau** framework are the applications.
 
-Applications
-------------
+t Applications
+--------------
 A *t app* does the following:
 
  - queries the environment
@@ -70,7 +70,6 @@ A *t app* does the following:
 
 Application Descriptor
 ----------------------
-
 Example application descriptor object:
 
     var app1 = function(environment, onStart, onEnd) { 
@@ -82,7 +81,6 @@ Example application descriptor object:
 
 Environment
 -----------
-
 Example environment descriptor:
     
     var env = function(service_endpoints) {
