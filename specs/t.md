@@ -30,39 +30,22 @@ Another unique aspect of **tau** framework are the applications.
 
 t Applications
 --------------
-A *t app* does the following:
+A **t app** does the following:
 
- - queries the environment
-   - gathers interaction mode for its use
- - knows to interact with its human users on devices
-   - provides a set features to interact with browsers
-     - URL locates a t app from the internet
-     - GUI (HTML form) Elements to conduct information
-     - Mouse & Keyboard as input devices
-   - provides a set of features to interact with devices  
-     - Icon for activating an app
-     - GUI (HTML form) Elements to conduct information
-     - Touch, GPS, Camera, Physics (Accelarometer), Compass as input devices
- - knows to interact programmitically
-   - URL to locate the application
-   - API methods to get and set information
- - global information stored by all t apps
-   - who used the app 
-   - when it was used
-   - what information 
-     - served
-     - updated
+ - queries its environment
+   - gathers appropriate interaction mode for its use
+   - UI (HTML5/URL) or TEXT (JSON/REST)
  - two main parts of a t app:
    - client
      - composed of a set of (HTML5) programs downloaded from the server
-     - communicates with the server using a secure protocol
-       - ROQL (Restful Object Query Language) over HTTPS
+       - to be run in the browser (can be an embedded browser - in case of device)
+     - communicates with the server using a secure protocol (HTTPS)
      - caches encrypted information locally for performance reasons
        - the encryption key is stored on the server
        - initial client authentication retrieves the key
    - server
-     - stateless node.js server
-     - platform services
+     - stateless application server communicating to 
+     - platform services, examples:
        - document read/ writes services (mongo)
        - caching services (memcached)
        - file storage services (memcached)
