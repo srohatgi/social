@@ -1,6 +1,28 @@
 t
 =
-t (tau) is The overall framework for building lightwieght web apps. In the current incarnation, it leverages html5, css3, js standards for defining, executing applications across multiple devices.
+t (tau) is The overall framework for building lightwieght social web apps. The distinction between tau social framework and other web application frameworks is to allow building of malleable application business objects, which expose data and behavior which can be changed by users.
+
+Business Object
+---------------
+So what is a business object? In its purest form, a business object is just a bag of related structured data. For example, a user object looks like:
+
+    User
+    {
+        id_: 'XXXXXX'
+      , name: 'Sumeet Rohatgi'
+      , dob: '1/1/1970'
+      , address: { 
+          street: '2345 Acme Ave'
+        , city: 'AnyCity'
+        , state: 'AC'
+        , zip: '90210'
+        }
+    }
+    
+These objects can be created, destroyed, updated, and *related* to other business objects. There are two kinds of relations:
+
+ - for example, a Payment *object* contains information about the user and the payment he made for a subscription or a service
+ - for example, a Payment *object* is a type of an *Activity* object (a higher level abstraction)
 
 
 Applications
