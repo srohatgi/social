@@ -25,3 +25,21 @@ Following
 ---------
 - users follow interesting users or a subset of thier content
 - these *follow* turn into folders themselves
+
+Objects & Methods
+-----------------
+Using the [Social Design](http://lifetechno.blogspot.com/2011/10/social-software-what-is-social-software.html) thinking, following turns out to be methods and objects.
+
+- Folder
+  - Folder.add(comment)
+  - Folder.subscribe(user)
+  - Folder.subscribe(folder)
+  - Folder.list(user)
+  - Folder.list(folder)
+- User
+  - User.add(comment)
+  - User.add(status)
+  - User.subscribe(folder)
+  - User.subscribe(user)
+  - User.list(folder)
+  - User.list(user)
