@@ -1,20 +1,19 @@
 ROQL
 ====
-Restful Object Query Language is a library. Out of the box, it extends pointer like nature of the web addresses to being now an OO like query language. The library tries to do this extension in a way that appeals and appears as 'normal' to web programmers.
+**Restful Object Query Language** is a library. Out of the box, it extends pointer like nature of the web addresses to being now an OO like query language. The library tries to do this extension in a way that appeals and appears as **natural** to web programmers.
 
 KEYWORDS
 --------
-Programmers need to know the domain objects exposed by the underlying corporation. These become stitched into the language.
+Programmers need to know and understand the domain objects exposed by the underlying corporation. These then become a part of the language. A way to rationalize this is to imagine that these business objects act as *global variables*
 
 - physical objects
   - examples: person (user, account), device (desktop, mobile), content (folder, file, link), message (email, sms)
   - examples: time (date, last, days, weeks, months, years), transaction (id)
-- service objects
+- virtual objects
   - examples: send, receive, track, share, sync, sign, upload, download, users, content-svc
-- service methods: business objects are primarily acted upon (retrieved, managed, updated) from service methods
+- methods: business objects are primarily acted upon (retrieved, managed, updated) from service methods
   - examples: new (HTTP POST), list (HTTP GET), update (HTTP PUT), details (HTTP GET)
   - custom: audit is a new send object method primarily for updating audit details around send transaction (available on PUT)
-- service method overrides: these methods override default physical behavior with the requested override. Most common overrides are for HTTP POST (GET:override/post/<normal URL>
 - extensions: capability to add new objects and methods at runtime (immediately available for use)
   - examples: send method extension for notifying a custom webservice
   - examples: new business object (company) added as type person
