@@ -6,23 +6,23 @@ KEYWORDS
 --------
 Programmers need to know and understand the domain objects exposed by the underlying corporation. These then become a part of the language. A way to rationalize this is to imagine that these business objects act as *global variables*
 
-- physical objects
+- **physical** objects
   - examples: person (user, account), device (desktop, mobile), content (folder, file, link), message (email, sms)
   - examples: time (date, last, days, weeks, months, years), transaction (id)
-- virtual objects
+- **virtual** objects
   - examples: send, receive, track, share, sync, sign, upload, download, users, content-svc
-- methods: business objects are primarily acted upon (retrieved, managed, updated) from service methods
+- **common** methods: business objects are primarily acted upon (retrieved, managed, updated) from service methods
   - examples: new (HTTP POST), list (HTTP GET), update (HTTP PUT), details (HTTP GET)
-  - custom: audit is a new send object method primarily for updating audit details around send transaction (available on PUT)
-- extensions: capability to add new objects and methods at runtime (immediately available for use)
+  - custom: for example, *audit* is a new send object method primarily for updating audit details around send transaction (available on PUT)
+- **extensions**: capability to add new objects and methods at runtime (immediately available for use)
   - examples: send method extension for notifying a custom webservice
   - examples: new business object (company) added as type person
 
 SYNTAX
 ------
-- services invoked using: <service name>
-  - examples: send
-- variables are passed in using object notation
+- object **methods invoked** using: <method>:<broker>/<object name>
+  - examples: GET:t.yousendit.com/send; we can typically ignore the t broker, and shorten the object method invocation to GET:/send
+- **parameters (we can imagine these as filters)** are passed in using object notation
   - examples: person.user.login, person.user.email refers to same object (user) with two properties (login, email)
   - examples: person.user.login, person.account.name refers to two objects (user, account)
   - NOTE: object properties can be determined using shorthand notation of child classes, for example:
