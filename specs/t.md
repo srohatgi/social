@@ -35,48 +35,29 @@ A **t app** does the following:
  - queries its environment
    - gathers appropriate interaction mode for its use
    - UI (HTML5/URL) or TEXT (JSON/REST)
- - two main parts of a t app:
-   - client
-     - composed of a set of (HTML5) programs downloaded from the server
-       - to be run in the browser (can be an embedded browser - in case of device)
-     - communicates with the server using a secure protocol (HTTPS)
-     - caches encrypted information locally for performance reasons
-       - the encryption key is stored on the server
-       - initial client authentication retrieves the key
-   - server
-     - stateless application server communicating to 
-     - platform services, examples:
-       - document read/ writes services (mongo)
-       - caching services (memcached)
-       - file storage services (memcached)
-       - other http business services (custom)
+ - client
+   - composed of a set of (HTML5) programs downloaded from the server
+     - to be run in the browser (can be an embedded browser, as in case of a mobile device)
+     - able to tune the interactions based on UA (user agent), for example if the app is being rendered on mobile; then touch, swipe, and gravity become dominant means of interaction
+   - composed of a set of text files (JSON) downloaded from the server
+     - to be called using **curl** or the **browser** address bar
+   - caches encrypted information locally for performance reasons
+     - the encryption key is stored on the server
+     - initial client authentication retrieves the key
+   - communicates with the server using a secure protocol (HTTPS)
+ - server
+   - stateless application server components communicating to 
+   - platform services, examples:
+     - document read/ writes services (mongo)
+     - caching services (memcached)
+     - file storage services (memcached)
+     - other http business services (custom)
 
-Application Descriptor
-----------------------
-Example application descriptor object:
+Architecture
+------------
+A t app is stateless in nature and depends on a srtong **data services platform** to perform the heavy lifting of aggregation and composition. A N-tier architecture can be visualized where:
 
-    var app1 = function(environment, onStart, onEnd) { 
-      var e = environment;
-      return {
-        
-      }
-    }
-
-Environment
------------
-Example environment descriptor:
-    
-    var env = function(service_endpoints) {
-      // validate endpoints are configured correctly
-      var ua = "";
-      var user = "";
-      return {
-          setup: function(roql) {
-          // parse headers and setup ua, user etc.
-
-        }
-        , db: function() {
-          return service_endpoints.mongo_db_uri;
-        }
-      }
-    }
+- business object definition, and operations are defined by developers
+  - application compositing performed by a frontend generation layer (JET)
+  - object retrieval and aggregation by a frontend parsing layer (ROQL)
+  - compositional services performed by a **special data service** 
