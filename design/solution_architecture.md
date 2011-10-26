@@ -4,12 +4,15 @@ This document lists out technology choices made for building out the reference s
 
 Application
 -----------
-The application server technology used is: 
+Server technology utilized: 
 
 - node.js
+- express framework
 
-Database
---------
-The database is composed of two components:
+User Object
+-----------
+Utilizing facebook user (OAuth) API
 
-- Mongo DB
+Folder Object
+-------------
+Utilizing YouSendIt's folder API
