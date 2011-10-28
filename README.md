@@ -1,6 +1,6 @@
 SOCIAL
 ======
-Testbed for a new technology framework (Tau) for building lightwieght social applications. The set of specs which define the framework itself are present in `specs/` folder.
+Testbed for a new technology framework (Tau) for building lightwieght social applications. The set of specs which define the framework itself are present in [specs/](https://github.com/srohatgi/social/blob/master/specs/t.md) folder.
 
 The framework itself is a work in progress. 
 
