@@ -61,18 +61,21 @@ class Proxy
       
       # return code is 200
       
-      # for SOAP calls, remove the cruft
-      if @options.headers['Content-Type'] == 'application/soap+xml;charset=UTF-8'
+      # TODO: test REST/ XML
+      if res.headers['Content-Type'] == 'application/soap+xml;charset=UTF-8' ||
+         res.headers['Content-Type'] == 'application/text+xml;charset=UTF-8'
         parser = new xmlj2s.Parser()
         parser.addListener 'end', (result)->
           console.log result
-          result = result['S:Body']["ns2:#{@options.name}Response"]["return"]
+          # for SOAP calls, remove the verbose cruft
+          if res.headers['Content-Type'] == 'application/soap+xml;charset=UTF-8'          
+            result = result['S:Body']["ns2:#{@options.name}Response"]["return"]
           @options.fn(null,result)
+          return
         parser.parseString res_data
-      else 
+      else
         @options.fn null, JSON.parse(res_data)
       return
     this
 
 exports.Proxy = Proxy
-  

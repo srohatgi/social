@@ -1,6 +1,4 @@
 express = require 'express'
-crypto = require 'crypto'
-util = require 'util'
 ROQL = require('./ROQL').ROQL
 
 app = module.exports = express.createServer()
