@@ -1,9 +1,9 @@
-BusinessObject = require('./BusinessObject').BusinessObject
-Proxy = require('./Proxy').Proxy
+Platform = require('./Platform').Platform
+Proxy = require('../Proxy').Proxy
 crypto = require 'crypto'
 util = require 'util'
 
-class Facebook extends BusinessObject
+class Facebook extends Platform
   constructor: (req)->
     console.log "Facebook ctor called"
     @signed_req = req.param 'signed_request'
@@ -12,7 +12,7 @@ class Facebook extends BusinessObject
   preprocess: ->
     q = @signed_req.split /\./
     if q.length != 2 
-      throw new Exception "unable to parse signed_request: #{req.param 'signed_request'}"
+      throw new Error "unable to parse signed_request: #{req.param 'signed_request'}"
       return
     sig = q[0]
 
@@ -24,18 +24,18 @@ class Facebook extends BusinessObject
                           .replace(/\//g,'_')
 
     if sig != expected_sig
-      throw new Exception "signature doesn't match #{sig}, #{expected_sig}"
+      throw new Error "signature doesn't match #{sig}, #{expected_sig}"
       return
 
     js = JSON.parse(new Buffer(q[1], 'base64').toString('ascii'))
     console.log "got the following payload #{util.inspect js}"
 
     if js['issued_at'] - (new Date()).getTime() > 86400000
-      throw new Exception "stale request recieved; will reject #{js['issued']}"
+      throw new Error "stale request recieved; will reject #{js['issued']}"
       return
 
     if js['user_id'] == null
-      redirect_uri = encodeUriComponent 'http://localhost:3000/facebook'
+      redirect_uri = encodeURIComponent 'http://localhost:3000/facebook/'
       auth_url =  "http://www.facebook.com/dialog/oauth"+
                   "?client_id=#{process.env.FACEBOOK_APP_ID}"+
                   "&redirect_uri=#{redirect_uri}"
@@ -43,18 +43,20 @@ class Facebook extends BusinessObject
     else
       @html = "my facebook folders app: #{JSON.stringify js}"
     # TODO get access code
-    @getAccessCode.call this, null  
+    @getAccessCode.call this, js.oauth_token  
     return
     
-  getAccessCode: ->
-    console.log "lets get the facebook access code #{util.inspect Proxy}"
-    access_url =   "https://graph.facebook.com/oauth/access_token"+
+  getAccessCode: (oauth_token)->
+    console.log "trying to get the facebook access code from oauth token(#{oauth_token})"
+    redirect_uri = encodeURIComponent 'http://localhost:3000/facebook/'
+    access_url =  "https://graph.facebook.com/oauth/access_token"+
                   "?client_id=#{process.env.FACEBOOK_APP_ID}"+
                   "&client_secret=#{process.env.FACEBOOK_APP_KEY}"+
-                  "&grant_type=client_credentials"
+                  "&redirect_uri=#{redirect_uri}"+
+                  "&code=#{oauth_token}"
     p = new Proxy(access_url)
     p.execute (err,res)->
-      throw new Exception "Error getting Access Code #{err}" unless !err
+      throw new Error "Error getting Access Code #{err}" unless !err
       console.log "processing the result: #{res}"
       @access_code = res
       return

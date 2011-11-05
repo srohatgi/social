@@ -16,19 +16,28 @@ class Proxy
     @options.isSoap = true
     this
   
+  getUrlPath: ->
+    @options['path']
+    
+  getHeader: (name)->
+    if @options.headers[name]
+      return @options.headers[name]
+    ''
+  
   headers: (headers)->
     for k,v of headers
       @options.headers[k] = v
     this
   
   execute: (fn)->
-    console.log "inside Proxy.execute()"
     @options.fn = fn
     if @options.isSecure
+      console.log "inside Proxy.execute() for secure #{@uri}"
       @req = http.request @options, (res)=>
         @process.call this, res
         return
     else
+      console.log "inside Proxy.execute() for non-secure #{@uri}"
       @req = https.request @options, (res)=>
         @process.call this, res
         return
@@ -49,17 +58,19 @@ class Proxy
     res.on 'data', (chunk)-> 
       res_data += chunk
       return 
-    res.on 'close', (err)-> throw new Exception "Error: server closed connection: #{err}"
+    res.on 'close', (err)-> throw new Error "Error: server closed connection: #{err}"
     res.on 'end', ->
       if res.statusCode != 200
+        # handle a redirect
         if res.statusCode < 400 && res.statusCode >= 300 && res.headers['content-type'] != 'text/html'
           console.log "redirecting to #{res.headers['location']}"
           @process this, res
           return
+        # otherwise throw an error
         console.log "will not handle return code: #{res.statusCode}"
-        throw new Exception "Error: server returned status: #{res.statusCode}"
+        throw new Error "facebook server returned status: #{res.statusCode}"
       
-      # return code is 200
+      # all is well, response return code is 200
       
       # TODO: test REST/ XML
       if res.headers['Content-Type'] == 'application/soap+xml;charset=UTF-8' ||
